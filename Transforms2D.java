@@ -15,7 +15,7 @@ public class Transforms2D extends JPanel {
 			int whichTransform = transformSelect.getSelectedIndex();
 
 			// TODO Apply transforms here, depending on the value of whichTransform!
-			switch (whichTransform) {
+	    switch (whichTransform) {
             case 0: break;
             case 1:
                 g2.scale(0.5, 0.5);
