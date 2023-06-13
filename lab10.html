@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script src="build/three.js"></script>
+</head>
+<body>
+<div id="canvas-container"></div>
+
+<script>
+    const canvasContainer = document.getElementById("canvas-container");
+
+    const scene = new THREE.Scene({color: 0xfff});
+
+    const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
+
+    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    canvasContainer.appendChild(renderer.domElement);
+
+    const light = new THREE.PointLight(0xffffff, 1, 300);
+    light.position.set(-5, -0.5, 0.5);
+    camera.add(light);
+    scene.add(camera);
+
+    const material = new THREE.MeshPhongMaterial({color: 0x1a1716});
+
+    let black_tower = new THREE.Group();
+
+    const baseGeometry = new THREE.CylinderGeometry(0.4, 0.4, 0.1, 100);
+    const base = new THREE.Mesh(baseGeometry, material);
+    black_tower.add(base);
+    base.position.y = 0.2;
+
+    const towerGeometry_1 = new THREE.CylinderGeometry(0.8, 0.8, 0.1, 100);
+    const towerPart_1 = new THREE.Mesh(towerGeometry_1, material);
+    towerPart_1.position.y = 0.3;
+    black_tower.add(towerPart_1);
+
+    const towerGeometry_2 = new THREE.CylinderGeometry(0.45, 0.7, 0.8, 100);
+    const towerPart_2 = new THREE.Mesh(towerGeometry_2, material);
+    towerPart_2.position.y = 0.75;
+    black_tower.add(towerPart_2);
+
+    const towerGeometry_3 = new THREE.CylinderGeometry(0.55, 0.55, 0.3, 100);
+    const towerPart_3 = new THREE.Mesh(towerGeometry_3, material);
+    towerPart_3.position.y = 1.29;
+    black_tower.add(towerPart_3);
+
+    const towerGeometry_4 = new THREE.CylinderGeometry(0.6, 0.5, 0.7, 100);
+    const towerPart_4 = new THREE.Mesh(towerGeometry_4, material);
+    towerPart_4.position.y = 1.79;
+    black_tower.add(towerPart_4);
+
+    const towerGeometry_5 = new THREE.CylinderGeometry(0.75, 0.75, 0.1, 100);
+    const towerPart_5 = new THREE.Mesh(towerGeometry_5, material);
+    towerPart_5.position.y = 2.1;
+    black_tower.add(towerPart_5);
+
+    const towerGeometry_6 = new THREE.CylinderGeometry(0.8, 0.8, 0.2, 100);
+    const towerPart_6 = new THREE.Mesh(towerGeometry_6, material);
+    black_tower.add(towerPart_6);
+    towerPart_6.position.y = 2.25;
+
+    black_tower.position.set(0, -3, 1);
+    scene.add(black_tower);
+    renderer.render(scene, camera);
+
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+
+    camera.position.z = 4.5;
+
+    animate();
+</script>
+</body>
+</html>
